@@ -11,15 +11,21 @@ import { Heading } from "@/components/ui/heading";
 import { Separator } from "@/components/ui/separator";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useState } from "react";
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { toast } from "react-hot-toast";
 import axios from "axios";
 import { useParams, useRouter } from "next/navigation";
 import { AlertModal } from "@/components/modals/alert-modal";
-import { useOrigin } from "@/hooks/use-origin";
 import ImageUpload from "@/components/ui/image-upload";
 
+import { 
+    Form, 
+    FormControl, 
+    FormField, 
+    FormItem, 
+    FormLabel, 
+    FormMessage 
+} from "@/components/ui/form";
 
 
 const formSchema = z.object({
@@ -40,7 +46,6 @@ export const BillboardForm: React.FC<BillboardFormProps> = ({
 }) => {
     const params = useParams();
     const router = useRouter();
-    const origin = useOrigin();
 
     const [open, setOpen] = useState(false);
     const [loading, setLoading] = useState(false);
@@ -67,7 +72,7 @@ export const BillboardForm: React.FC<BillboardFormProps> = ({
             }else {
                 await axios.post(`/api/${params.storeId}/billboards`, data);
             }
-            router.refresh();
+            router.refresh(); // why?
             router.push(`/${params.storeId}/billboards`); // initialdata kontrolü yapılarak edit yapılıyorsa o billboard sayfasında kalabilir veya billboards sayfasına yönlendirebilir.
             toast.success(toastMessage)
         } catch (error) {
@@ -81,8 +86,8 @@ export const BillboardForm: React.FC<BillboardFormProps> = ({
         try {
             setLoading(true)
             await axios.delete(`/api/${params.storeId}/billboards/${params.billboardId}`)
-            router.refresh();
-            router.push("/"); // I may put it last because success alert comes after routing to root ("/")
+            router.refresh(); // why again ? 
+            router.push(`/${params.storeId}/billboards`); // I may put it last because success alert comes after routing to root ("/")
             toast.success("Billboard has been deleted.")
         } catch (error) {
             toast.error("Make sure you removed all categories using this billboard.")
@@ -164,7 +169,6 @@ export const BillboardForm: React.FC<BillboardFormProps> = ({
                     </Button>
                 </form>
             </Form>
-            <Separator/>
         </>
     );
 };
