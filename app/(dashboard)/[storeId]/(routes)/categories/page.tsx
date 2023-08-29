@@ -12,10 +12,12 @@ const CategoriesPage = async ({
 }) => {
     const categories = await prismadb.category.findMany({
         where: {
-            storeId: params.storeId
+            storeId: params.storeId,
+            parentCategoryId: ""
         },
         include: {
             billboard: true,
+            parentCategory: true,
         },
         orderBy: {
             createdAt: 'desc'
@@ -26,6 +28,7 @@ const CategoriesPage = async ({
         id: item.id,
         name: item.name,
         billboardLabel: item.billboard.label,
+        parentId: item.parentCategory?.name || "main",
         createdAt: format (item.createdAt, "MMMM do, yyyy")
     }));
 

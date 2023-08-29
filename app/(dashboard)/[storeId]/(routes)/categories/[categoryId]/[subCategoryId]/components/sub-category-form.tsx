@@ -39,16 +39,16 @@ const formSchema = z.object({
     billboardId: z.string().min(1),
 });
 
-type CategoryFormValues = z.infer<typeof formSchema>;
+type SubCategoryFormValues = z.infer<typeof formSchema>;
 
-interface CategoryFormProps{
+interface SubCategoryFormProps{
     billboards:  Billboard[];
-    initialData: Category  | null;
+    initialData: Category[]  | null;
 }
 
 
 
-export const CategoryForm: React.FC<CategoryFormProps> = ({
+export const SubCategoryForm: React.FC<SubCategoryFormProps> = ({
     initialData,
     billboards
 }) => {
@@ -58,30 +58,26 @@ export const CategoryForm: React.FC<CategoryFormProps> = ({
     const [open, setOpen] = useState(false);
     const [loading, setLoading] = useState(false);
 
-    const title = initialData ? "Edit category": "Create category";
-    const description = initialData ? "Edit a category": "Add a new category";
-    const toastMessage = initialData ? "Category has been updated": "Category has been created";
-    const action = initialData ? "Save Changes": "Create";
+    const title = "Create sub category";
+    const description = "Add a new sub category";
+    const toastMessage = "Sub category has been created";
+    const action = "Create";
 
 
-    const form = useForm<CategoryFormValues>({
+    const form = useForm<SubCategoryFormValues>({
         resolver: zodResolver(formSchema),
-        defaultValues: initialData || {
+        defaultValues: {
             name: '',
             billboardId: ''
         }
     });
 
-    const onSubmit = async (data: CategoryFormValues)=>{
+    const onSubmit = async (data: SubCategoryFormValues)=>{
         try {
             setLoading(true);
-            if(initialData){ // if we already have a billboard
-                await axios.patch(`/api/${params.storeId}/categories/${params.categoryId}`, data);
-            }else {
-                await axios.post(`/api/${params.storeId}/categories`, data);
-            }
+            await axios.post(`/api/${params.storeId}/categories/${params.categoryId}`, data);
             router.refresh(); // why?
-            router.push(`/${params.storeId}/categories`); // initialdata kontrolü yapılarak edit yapılıyorsa o billboard sayfasında kalabilir veya billboards sayfasına yönlendirebilir.
+            router.push(`/${params.storeId}/categories/${params.categoryId}`); // initialdata kontrolü yapılarak edit yapılıyorsa o billboard sayfasında kalabilir veya billboards sayfasına yönlendirebilir.
             toast.success(toastMessage)
         } catch (error) {
             toast.error("Something went wrong.");
@@ -93,10 +89,10 @@ export const CategoryForm: React.FC<CategoryFormProps> = ({
     const onDelete = async () => {
         try {
             setLoading(true)
-            await axios.delete(`/api/${params.storeId}/categories/${params.categoryId}`)
+            await axios.delete(`/api/${params.storeId}/categories/${params.categoryId}/${params.subCategoryId}`)
             router.refresh(); // why again ? 
             router.push(`/${params.storeId}/categories`); // I may put it last because success alert comes after routing to root ("/")
-            toast.success("Category has been deleted.")
+            toast.success("Sub category has been deleted.")
         } catch (error) {
             toast.error("Make sure you removed all products using this category.")
         } finally{
@@ -121,16 +117,6 @@ export const CategoryForm: React.FC<CategoryFormProps> = ({
                 title={title}
                 description = {description}
             />
-            { initialData && (
-            <Button
-                disabled={loading}
-                variant = "destructive"
-                size="sm"
-                onClick = {() => setOpen(true)}
-            >
-                <Trash className="h4 w-4" />
-            </Button>
-            )}
             </div>
             <Separator />
             <Form {...form}>
@@ -145,7 +131,7 @@ export const CategoryForm: React.FC<CategoryFormProps> = ({
                                         Name
                                     </FormLabel>
                                     <FormControl>
-                                        <Input disabled={loading} placeholder="Category name" {...field}/>
+                                        <Input disabled={loading} placeholder="Sub category name" {...field}/>
                                     </FormControl>
                                     <FormMessage/>
                                 </FormItem>

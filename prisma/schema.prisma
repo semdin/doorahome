@@ -45,12 +45,16 @@ model Category {
   billboardId String
   billboard Billboard @relation(fields: [billboardId], references: [id])
   products Product[] @relation("CategoryToProduct")
+  parentCategoryId String
+  parentCategory   Category?  @relation("CategoryToCategory", fields: [parentCategoryId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  category  Category[] @relation("CategoryToCategory")
   name String
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
   @@index([storeId])
   @@index([billboardId])
+  @@index([parentCategoryId])
 }
 
 model Size {

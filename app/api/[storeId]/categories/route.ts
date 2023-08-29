@@ -43,7 +43,8 @@ export async function POST(
             data: {
                 name,
                 billboardId,
-                storeId: params.storeId
+                storeId: params.storeId,
+                parentCategoryId: ""
             }
         });
 
@@ -70,6 +71,11 @@ export async function GET(
         const categories = await prismadb.category.findMany({
             where: {
                 storeId: params.storeId,
+
+            },
+            include: {
+                billboard: true,
+                category: true,
             }
         });
 
