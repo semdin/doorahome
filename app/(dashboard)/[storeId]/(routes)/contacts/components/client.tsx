@@ -6,16 +6,16 @@ import { Heading } from "@/components/ui/heading";
 import { Separator } from "@/components/ui/separator";
 import { DataTable } from "@/components/ui/data-table";
 
-import { OrderColumn, columns } from "./columns";
+import { ContactColumn, columns } from "./columns";
 
 
 
-interface OrderClientProps{
-    data: OrderColumn[]
+interface ContactClientProps{
+    data: ContactColumn[]
 }
 
 
-export const OrderClient: React.FC<OrderClientProps> = ({
+export const ContactClient: React.FC<ContactClientProps> = ({
     data
 }) => {
     const router = useRouter();
@@ -23,8 +23,8 @@ export const OrderClient: React.FC<OrderClientProps> = ({
     return (
         <>
         <Heading
-            title={`Orders (${data.length})`}
-            description="Manage orders for your store"
+            title={`Contacts (${data.length})`}
+            description="Check your contacts from your customers"
         />
         <Separator/>
         <DataTable 

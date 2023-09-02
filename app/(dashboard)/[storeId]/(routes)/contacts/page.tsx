@@ -2,7 +2,7 @@ import { format } from "date-fns";
 
 import prismadb from "@/lib/prismadb";
 
-import { OrderClient } from "./components/client";
+import { ContactClient } from "./components/client";
 import { ContactColumn } from "./components/columns";
 import { formatter } from "@/lib/utils";
 
@@ -32,7 +32,7 @@ const ContactsPage = async ({
     return ( 
         <div className="flex-col">
             <div className="flex-1 space-y-4 p-8 pt-6">
-            <OrderClient data= {formattedContacts}/>
+            <ContactClient data= {formattedContacts}/>
             </div>
         </div> 
     );
