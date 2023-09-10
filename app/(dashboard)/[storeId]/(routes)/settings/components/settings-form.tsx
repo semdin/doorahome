@@ -29,33 +29,142 @@ interface SettingsFormProps{
 }
 
 const formSchema = z.object({
-    name: z.string().min(1),
-    siteLink: z.string().min(1),
-    cardName: z.string().min(1),
-    card1Title: z.string().min(1),
-    card1Description: z.string().min(1),
-    card2Title: z.string().min(1),
-    card2Description: z.string().min(1),
-    card3Title: z.string().min(1),
-    card3Description: z.string().min(1),
-    fLogoUrl: z.string().min(1),
-    fRes1Title: z.string().min(1),
-    fRes1Link: z.string().min(1),
-    fRes2Title: z.string().min(1),
-    fRes2Link: z.string().min(1),
-    facebookUrl: z.string().min(1),
-    instagramUrl: z.string().min(1),
-    twitterUrl: z.string().min(1),
-    privacyPolicy: z.string().min(1),
-    termsAndConditions: z.string().min(1),
-    contactUsDescription: z.string().min(1),
-    contactUsCard1Descrition: z.string().min(1),
-    contactUsCard1Email: z.string().min(1),
-    contactUsCard2Descrition: z.string().min(1),
-    contactUsCard2Phone: z.string().min(1),
-    aboutUsDescription: z.string().min(1),
-    aboutUsPhotoUrl: z.string().min(1),
-    aboutUsOurStory: z.string().min(1),
+    name: z.string().min(1, {
+        message: "Name must be at least 1 character.",
+      }).max(255, {
+        message: "Name cannot exceed 255 characters.",
+      }),
+    siteLink: z.string().min(1, {
+        message: "Site link must be at least 1 character.",
+      }).max(255, {
+        message: "Site link cannot exceed 255 characters.",
+      }),
+    cardName: z.string().min(1, {
+        message: "Card name must be at least 1 character.",
+      }).max(255, {
+        message: "Card name cannot exceed 255 characters.",
+      }),
+    card1Title: z.string().min(1, {
+        message: "Card 1 title must be at least 1 character.",
+      }).max(255, {
+        message: "Card 1 title cannot exceed 255 characters.",
+      }),
+    card1Description: z.string().min(1, {
+        message: "Card 1 description must be at least 1 character.",
+      }).max(1000, {
+        message: "Card 1 description cannot exceed 1000 characters.",
+      }),
+    card2Title: z.string().min(1, {
+        message: "Card 2 title must be at least 1 character.",
+      }).max(255, {
+        message: "Card 2 title cannot exceed 255 characters.",
+      }),
+    card2Description: z.string().min(1, {
+        message: "Card 2 description must be at least 1 character.",
+      }).max(1000, {
+        message: "Card 2 description cannot exceed 1000 characters.",
+      }),
+    card3Title: z.string().min(1, {
+        message: "Card 3 title must be at least 1 character.",
+      }).max(255, {
+        message: "Card 3 title cannot exceed 255 characters.",
+      }),
+    card3Description: z.string().min(1, {
+        message: "Card 3 description must be at least 1 character.",
+      }).max(1000, {
+        message: "Card 3 description cannot exceed 1000 characters.",
+      }),
+    fLogoUrl: z.string().min(1, {
+        message: "Logo URL must be at least 1 character.",
+      }).max(255, {
+        message: "Logo URL cannot exceed 255 characters.",
+      }),
+    fRes1Title: z.string().min(1, {
+        message: "Resource 1 title must be at least 1 character.",
+      }).max(255, {
+        message: "Resource 1 title cannot exceed 255 characters.",
+      }),
+    fRes1Link: z.string().min(1, {
+        message: "Resource 1 link must be at least 1 character.",
+      }).max(255, {
+        message: "Resource 1 link cannot exceed 255 characters.",
+      }),
+    fRes2Title: z.string().min(1, {
+        message: "Resource 2 title must be at least 1 character.",
+      }).max(255, {
+        message: "Resource 2 title cannot exceed 255 characters.",
+      }),
+    fRes2Link: z.string().min(1, {
+        message: "Resource 2 link must be at least 1 character.",
+      }).max(255, {
+        message: "Resource 2 link cannot exceed 255 characters.",
+      }),
+    facebookUrl: z.string().min(1, {
+        message: "Facebook URL must be at least 1 character.",
+      }).max(255, {
+        message: "Facebook URL cannot exceed 255 characters.",
+      }),
+    instagramUrl: z.string().min(1, {
+        message: "Instagram URL must be at least 1 character.",
+      }).max(255, {
+        message: "Instagram URL cannot exceed 255 characters.",
+      }),
+    twitterUrl: z.string().min(1, {
+        message: "Twitter URL must be at least 1 character.",
+      }).max(255, {
+        message: "Twitter URL cannot exceed 255 characters.",
+      }),
+    privacyPolicy: z.string().min(1, {
+        message: "Privacy Policy must be at least 1 character.",
+      }).max(255, {
+        message: "Privacy Policy cannot exceed 1000 characters.",
+      }),
+    termsAndConditions: z.string().min(1, {
+        message: "Terms and Conditions must be at least 1 character.",
+      }).max(255, {
+        message: "Terms and Conditions cannot exceed 1000 characters.",
+      }),
+    contactUsDescription: z.string().min(1, {
+        message: "Contact Us Description must be at least 1 character.",
+      }).max(1000, {
+        message: "Contact Us Description cannot exceed 1000 characters.",
+      }),
+    contactUsCard1Descrition: z.string().min(1, {
+        message: "Contact Us Card 1 Description must be at least 1 character.",
+      }).max(1000, {
+        message: "Contact Us Card 1 Description cannot exceed 1000 characters.",
+      }),
+    contactUsCard1Email: z.string().min(1, {
+        message: "Contact Us Card 1 Email must be at least 1 character.",
+      }).max(255, {
+        message: "Contact Us Card 1 Email cannot exceed 255 characters.",
+      }),
+    contactUsCard2Descrition: z.string().min(1, {
+        message: "Contact Us Card 2 Description must be at least 1 character.",
+      }).max(1000, {
+        message: "Contact Us Card 2 Description cannot exceed 1000 characters.",
+      }),
+    contactUsCard2Phone: z.string().min(1, {
+        message: "Contact Us Card 2 Phone must be at least 1 character.",
+      }).max(255, {
+        message: "Contact Us Card 2 Phone cannot exceed 255 characters.",
+      }),
+    aboutUsDescription: z.string().min(1, {
+        message: "About Us Description must be at least 1 character.",
+      }).max(1000, {
+        message: "About Us Description cannot exceed 1000 characters.",
+      }),
+    aboutUsPhotoUrl: z.string().min(1, {
+        message: "About Us Photo URL must be at least 1 character.",
+      }).max(255, {
+        message: "About Us Photo URL cannot exceed 255 characters.",
+      }),
+    aboutUsOurStory: z.string().min(1, {
+        message: "About Us Our Story must be at least 1 character.",
+      }).max(1000, {
+        message: "About Us Our Story cannot exceed 1000 characters.",
+      }),
+    
 });
 
 type SettingsFormValues = z.infer<typeof formSchema>;
