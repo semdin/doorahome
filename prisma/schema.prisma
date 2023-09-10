@@ -14,6 +14,32 @@ datasource db {
 model Store {
   id String @id @default(uuid())
   name String
+  siteLink String   @default("default_siteLink_value")
+  cardName String   @default("default_cardName_value")
+  card1Title String @default("default_card1Title_value")
+  card1Description String @default("default_card1Description_value")
+  card2Title String @default("default_card2Title_value")
+  card2Description String @default("default_card2Description_value")
+  card3Title String @default("default_card3Title_value")
+  card3Description String @default("default_card3Description_value")
+  fLogoUrl String @default("default_fLogoUrl_value")
+  fRes1Title String @default("default_fRes1Title_value")
+  fRes1Link String @default("default_fRes1Link_value")
+  fRes2Title String @default("default_fRes2Title_value")
+  fRes2Link String @default("default_fRes2Link_value")
+  facebookUrl String @default("default_facebookUrl_value")
+  instagramUrl String @default("default_instagramUrl_value")
+  twitterUrl String @default("default_twitterUrl_value")
+  privacyPolicy String @default("default_privacyPolicy_value")
+  termsAndConditions String @default("default_termsAndConditions_value")
+  contactUsDescription String @default("default_contactUsDescription_value")
+  contactUsCard1Descrition String @default("default_contactUsCard1Descrition_value")
+  contactUsCard1Email String @default("default_contactUsCard1Email_value")
+  contactUsCard2Descrition String @default("default_contactUsCard2Descrition_value")
+  contactUsCard2Phone String @default("default_contactUsCard2Phone_value")
+  aboutUsDescription String @default("default_aboutUsDescription_value")
+  aboutUsPhotoUrl String @default("default_aboutUsPhotoUrl_value")
+  aboutUsOurStory String @default("default_aboutUsOurStory_value")
   userId String
   billboards Billboard[] @relation("StoreToBillboard")
   categories Category[] @relation("StoreToCategory")
@@ -25,6 +51,7 @@ model Store {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
+
 
 model Billboard {
   id String @id @default(uuid())

@@ -10,7 +10,35 @@ export async function PATCH(
         const {userId} = auth();
         const body = await req.json();
 
-        const {name} = body;
+        const {
+            name,
+            siteLink,
+            cardName,
+            card1Title,
+            card1Description,
+            card2Title,
+            card2Description,
+            card3Title,
+            card3Description,
+            fLogoUrl,
+            fRes1Title,
+            fRes1Link,
+            fRes2Title,
+            fRes2Link,
+            facebookUrl,
+            instagramUrl,
+            twitterUrl,
+            privacyPolicy,
+            termsAndConditions,
+            contactUsDescription,
+            contactUsCard1Descrition,
+            contactUsCard1Email,
+            contactUsCard2Descrition,
+            contactUsCard2Phone,
+            aboutUsDescription,
+            aboutUsPhotoUrl,
+            aboutUsOurStory,
+        } = body;
 
         if(!userId){
             return new NextResponse("Unauthenticated", {status: 401});
@@ -30,7 +58,33 @@ export async function PATCH(
                 userId
             },
             data: {
-                name
+                name,
+                siteLink,
+                cardName,
+                card1Title,
+                card1Description,
+                card2Title,
+                card2Description,
+                card3Title,
+                card3Description,
+                fLogoUrl,
+                fRes1Title,
+                fRes1Link,
+                fRes2Title,
+                fRes2Link,
+                facebookUrl,
+                instagramUrl,
+                twitterUrl,
+                privacyPolicy,
+                termsAndConditions,
+                contactUsDescription,
+                contactUsCard1Descrition,
+                contactUsCard1Email,
+                contactUsCard2Descrition,
+                contactUsCard2Phone,
+                aboutUsDescription,
+                aboutUsPhotoUrl,
+                aboutUsOurStory,
             }
         });
 
