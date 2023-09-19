@@ -111,7 +111,7 @@ export async function GET(
         }
 
 
-        const products = await prismadb.product.findMany({
+ /*       const products = await prismadb.product.findMany({
             where: {
                 storeId: params.storeId,
                 categoryId,
@@ -123,6 +123,31 @@ export async function GET(
             include:{
                 images: true,
                 category: true,
+                color: true,
+                size: true
+            },
+            orderBy: {
+                createdAt: 'desc'
+            }
+        });*/
+
+
+        const products = await prismadb.product.findMany({
+            where: {
+                storeId: params.storeId,
+                categoryId,
+                sizeId,
+                colorId,
+                isFeatured: isFeatured ? true : undefined,
+                isArchived: false
+            },
+            include: {
+                images: true,
+                category: {
+                    include: {
+                        category: true // İç içe ilişkiyi çekmek için
+                    }
+                },
                 color: true,
                 size: true
             },
