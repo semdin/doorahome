@@ -379,7 +379,7 @@ export const ProductForm: React.FC<ProductFormProps> = ({
                                             Archived
                                         </FormLabel>
                                         <FormDescription>
-                                            This product will npt appear anywhere in the store
+                                            This product will not appear anywhere in the store
                                         </FormDescription>
                                     </div>
                                 </FormItem>
