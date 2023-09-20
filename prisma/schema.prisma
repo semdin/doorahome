@@ -129,6 +129,7 @@ model Product {
   category Category @relation("CategoryToProduct", fields: [categoryId], references: [id])
   name String
   price Decimal
+  description String @db.VarChar(1000) @default("default_description_value")
   isFeatured Boolean @default(false)
   isArchived Boolean @default(false)
   sizeId String
