@@ -151,7 +151,11 @@ export async function GET(
                 images: true,
                 category: {
                     include: {
-                        category: true // İç içe ilişkiyi çekmek için
+                        category: {
+                            include: {
+                                category: true // İç içe ilişkiyi çekmek için
+                            }
+                        },
                     }
                 },
                 color: true,

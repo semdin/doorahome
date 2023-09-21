@@ -18,7 +18,15 @@ export async function GET(
             },
             include: {
                 billboard: true,
-                category: true,
+                category: {
+                    include: {
+                        category: {
+                            include: {
+                                category: true // İç içe ilişkiyi çekmek için
+                            }
+                        },
+                    }
+                },
             }
         });
 
