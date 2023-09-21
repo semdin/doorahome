@@ -148,7 +148,11 @@ export async function GET(
                 isArchived: false
             },
             include: {
-                images: true,
+                images: {
+                    orderBy: {
+                        url: 'asc' // updatedAt değerine göre sıralama yap
+                    }
+                },
                 category: {
                     include: {
                         category: {

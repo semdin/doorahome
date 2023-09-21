@@ -19,7 +19,11 @@ export async function GET(
                 id: params.productId,
             },
             include: {
-                images: true,
+                images: {
+                    orderBy: {
+                        url: 'asc' // updatedAt değerine göre sıralama yap
+                    }
+                },
                 category: true,
                 size: true,
                 color: true
