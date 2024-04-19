@@ -6,7 +6,7 @@ generator client {
 }
 
 datasource db {
-  provider = "mysql"
+  provider = "postgresql"
   url      = env("DATABASE_URL")
   relationMode = "prisma"
 }
@@ -74,7 +74,7 @@ model Category {
   billboard Billboard @relation(fields: [billboardId], references: [id])
   products Product[] @relation("CategoryToProduct")
   parentCategoryId String
-  parentCategory   Category?  @relation("CategoryToCategory", fields: [parentCategoryId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  parentCategory   Category?  @relation("CategoryToCategory", fields: [parentCategoryId], references: [id], onDelete: Restrict, onUpdate: Restrict)
   category  Category[] @relation("CategoryToCategory")
   name String
   createdAt DateTime @default(now())
@@ -84,6 +84,7 @@ model Category {
   @@index([billboardId])
   @@index([parentCategoryId])
 }
+
 
 model Size {
   id String @id @default(uuid())
